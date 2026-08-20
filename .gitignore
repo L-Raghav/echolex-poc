@@ -1,0 +1,16 @@
+# Secrets — never commit these
+.env
+.env.local
+
+# Node (once we add a small backend in Sprint 1)
+node_modules/
+npm-debug.log
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Sample audio files (keep the repo light)
+/assets/audio/*.mp3
+!/assets/audio/.gitkeep

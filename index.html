@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EchoLex — Sprint 0: Audio Capture Test</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 60px auto; padding: 0 20px; }
+    button { padding: 10px 18px; font-size: 15px; cursor: pointer; }
+    audio { width: 100%; margin: 20px 0; }
+    p.hint { color: #555; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>EchoLex — Sprint 0</h1>
+  <p>Goal: prove we can capture live audio samples while the file plays. Open your browser console before clicking play.</p>
+
+  <audio id="podcastAudio" controls src="assets/audio/sample.mp3"></audio>
+
+  <button id="startCapture">Start Capture</button>
+  <p class="hint">Click this once, then press play on the audio above. You should see chunk logs appear in the console.</p>
+
+  <script src="app.js"></script>
+</body>
+</html>
