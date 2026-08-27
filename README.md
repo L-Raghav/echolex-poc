@@ -1,3 +1,4 @@
+
 # EchoLex
 
 > Real-time, click-to-define lookup for podcast audio
@@ -44,5 +45,6 @@ EchoLex captures live audio from the browser, streams it to Deepgram for real-ti
 
 - **Phase A (08/26 → 11/26):** local web-page prototype proving the core NLP pipeline — audio capture, live transcription, click-to-define
 - **Phase B (December onward):** port into a real cross-platform Chrome extension, with cross-platform player support
+
 
 
