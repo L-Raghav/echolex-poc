@@ -29,9 +29,9 @@ python -m http.server 8000
 
 ```
 
-#Open http://localhost:8000 in your browser
-#click the "Start Capture" button
-#press play and check browser console for audio capture
+-Open http://localhost:8000 in your browser
+-click the "Start Capture" button
+-press play and check browser console for audio capture
 
 ## Architecture
 
