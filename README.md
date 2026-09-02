@@ -42,7 +42,7 @@ EchoLex captures live audio from the browser, streams it to Deepgram for real-ti
 *Note: this is the target architecture. Check out the [Development Journey](#development-journey) below for what has been built so far.*
 
 
-#development-journey
+##development-journey
 
 This project is being built and documented sprint by sprint. Each
 write-up covers what was built, why, and what I learned along the way.
