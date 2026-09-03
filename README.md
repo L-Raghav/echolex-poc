@@ -48,7 +48,7 @@ This project is being built and documented sprint by sprint. Each
 write-up covers what was built, why, and what I learned along the way.
 
 - **Sprint 0** — Capturing raw audio playing in the browser → [full write-up](docs/sprint-0-report.md)
-- **Sprint 1** — Ongoing → [full write-up](docs/sprint-1-report.md)
+- **Sprint 1** — Turn the captured audio chunks into text using Deepgram's API→ [full write-up](docs/sprint-1-report.md)
 - *(add a new line here at the end of each sprint)*
 
 
