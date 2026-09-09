@@ -37,7 +37,7 @@ python -m http.server 8000
 
 EchoLex captures live audio from the browser, streams it to Deepgram for real-time transcription, and displays the time-synced, clickable transcript with on-demand definitions using Dictionary API.
 
-![EchoLex architecture diagram](docs/architecture.jpg)
+![EchoLex architecture diagram](docs/architecture.png)
 
 *Note: this is the target architecture. Check out the [Development Journey](#development-journey) below for what has been built so far.*
 
