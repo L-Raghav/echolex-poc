@@ -46,7 +46,7 @@ Transcription didn't work on the first try — which turned out to be a good thi
 
 **Bonus finding:** saying "EchoLex" itself got transcribed as **"ECHO LEXUS"** — since "EchoLex" isn't a real English word, the ASR model matched it to the closest *real* word it knew (a car brand).
 
-![Deepgram mishearing "EchoLex" as "Echo Lexus"](docs/screenshots/echo-lexus.png)
+![Deepgram mishearing "EchoLex" as "Echo Lexus"](screenshots/echo-lexus.png)
 
 This is a real, captured example of exactly the kind of ambiguity EchoLex's planned **audio-anchored disambiguation** feature is meant to solve — when the model is uncertain, instead of silently committing to a confident-but-wrong guess like "Lexus," the system would let the listener replay just that snippet and pick the correct word before a definition is looked up.
 
