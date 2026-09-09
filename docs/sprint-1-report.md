@@ -11,7 +11,7 @@
 
 ## 1. Why This Sprint Exists
 
-Sprint 0 proved we could capture live audio as it plays in the browser. That capture is useless on its own, though — the next step is turning that audio into actual text, live, as it's spoken. This sprint verified that piece in isolation: before wiring anything into our own EchoLex code, we needed to confirm that mic audio *can* reach Deepgram and come back as a real transcript, using Deepgram's own official reference implementation.
+Sprint 0 proved we could capture live audio as it plays in the browser. That capture is useless on its own, though,` the next step is turning that audio into actual text, live, as it's spoken. This sprint verified that piece in isolation: before wiring anything into our own EchoLex code, we needed to confirm that mic audio *can* reach Deepgram and come back as a real transcript, using Deepgram's own official reference implementation.
 
 ## 2. What Was Tested
 
@@ -35,24 +35,22 @@ Using a Deepgram API key with **Member**-level permissions (a specific role requ
 
 ## 3. When Things Went Sideways 🕵️
 
-*(This part's worth writing in your own words — here's the raw shape of what happened, from our conversation, to work from.)*
+The transcription didn't work on the first try - which turned out to be fun to debug through rather than a setback. The troubleshooting process:
 
-Transcription didn't work on the first try — which turned out to be a good thing to debug through rather than a setback. The troubleshooting process:
-
-- The browser console showed a WebSocket connecting, then immediately closing (`CloseEvent`), before the microphone had even finished opening — a strong signal of an auth/permissions issue rather than a real network problem.
-- First suspect: a `404` also showing in the console. Investigating the **Network tab** (not just Console) showed the actual API calls — the temporary auth token fetch and the WebSocket upgrade — both succeeding (`200` and `101`). That ruled the 404 out; it was later identified as just the browser's routine, harmless `favicon.ico` request.
+- The browser console showed a WebSocket connecting, then immediately closing (`CloseEvent`), before the microphone had even finished opening, a strong signal of an auth/permissions issue rather than a real network problem.
+- First suspect: a `404` also showing in the console. Investigating the **Network tab** (not just Console) showed the actual API calls the temporary auth token fetch and the WebSocket upgrade-both succeeding (`200` and `101`). That ruled out the 404 theory; it was later identified as just the browser's routine, harmless `favicon.ico` request.
 - Second check: the Deepgram key's role. Confirmed it was already set to **Member**, so that wasn't it either.
-- Eventually retried the whole flow cleanly — and it worked: **"ECHO ECHO ECHO"** appeared on screen from live mic input, proving the full pipeline (mic → WebSocket → server → Deepgram → transcript → page) end to end.
+- Eventually retried the whole flow cleanly, and it worked: **"ECHO ECHO ECHO"** appeared on screen from live mic input, proving the full pipeline (mic → WebSocket → server → Deepgram → transcript → page) end to end.
 
-**Bonus finding:** saying "EchoLex" itself got transcribed as **"ECHO LEXUS"** — since "EchoLex" isn't a real English word, the ASR model matched it to the closest *real* word it knew (a car brand).
+**Bonus finding:** "EchoLex" itself got transcribed as **"ECHO LEXUS"** — since "EchoLex" isn't a real English word, the ASR model matched it to the closest *real* word it knew (a car brand).
 
 ![Deepgram mishearing "EchoLex" as "Echo Lexus"](screenshots/echo-lexus.png)
 
 This is a real, captured example of exactly the kind of ambiguity EchoLex's planned **audio-anchored disambiguation** feature is meant to solve — when the model is uncertain, instead of silently committing to a confident-but-wrong guess like "Lexus," the system would let the listener replay just that snippet and pick the correct word before a definition is looked up.
 
-## 4. What I Learned 💡
+## 4. Lesson Learned 💡
 
-Running `npm i` flagged several dependency vulnerabilities (via `npm audit`). After looking into it: none of them were a real concern *here*, because this server only listens on `localhost` — meaning no other device can send it requests. The distinction that matters is **inbound vs. outbound**: nothing external can reach in, while the one outbound connection this app makes is to a trusted API (Deepgram) I explicitly chose to talk to. That's a different risk profile than a publicly deployed server would have — which is exactly why this becomes something to actually act on once EchoLex's real extension is public in Phase B, rather than something to fix now.
+Running `npm i` flagged several dependency vulnerabilities (via `npm audit`). After looking into it: none of them were a real concern *here*, because this server only listens on `localhost` - meaning no other device can send it requests. The distinction that matters is **inbound vs. outbound**: nothing external can reach in, while the one outbound connection this app makes is to a trusted API (Deepgram) I explicitly chose to talk to. That's a different risk profile than a publicly deployed server would have - which is exactly why this becomes something to actually act on once EchoLex's real extension is public in Phase B, rather than something to fix now.
 
 ## 5. What's Next 🔮
 
