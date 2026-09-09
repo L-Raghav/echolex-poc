@@ -35,7 +35,7 @@ Using a Deepgram API key with **Member**-level permissions (a specific role requ
 
 ## 3. When Things Went Sideways 🕵️
 
-The transcription didn't work on the first try - which turned out to be fun to debug through rather than a setback. The troubleshooting process:
+The transcription didn't work on the first try - which turned out to be a fun and intuitive debugging session rather than a setback. The troubleshooting process:
 
 - The browser console showed a WebSocket connecting, then immediately closing (`CloseEvent`), before the microphone had even finished opening, a strong signal of an auth/permissions issue rather than a real network problem.
 - First suspect: a `404` also showing in the console. Investigating the **Network tab** (not just Console) showed the actual API calls the temporary auth token fetch and the WebSocket upgrade-both succeeding (`200` and `101`). That ruled out the 404 theory; it was later identified as just the browser's routine, harmless `favicon.ico` request.
