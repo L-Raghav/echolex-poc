@@ -1,0 +1,41 @@
+This was added to trigger a force update to include the commits made in this project count for contributions in my GitHub profile. It was a valuable learning experience to walk through and learn how Git and GitHub interact with each other.
+The fixing process:
+-First check was if the email in GitBash and the GitHub profile were the exact same, which I checked with the command:
+'''
+git config user-email
+'''
+
+-After figuring out my email was different I changed it using the following Git command:
+'''
+git config --global user.email "lraghav0509@gmail.com"
+
+-Now that the email was changed I wanted to make the previous commits count towards the contribution graph of my GitHub profile.
+So, to get those sweet sweet green boxes in my profile I entered this command since the commits number to a whopping 24 at minimum
+
+'''
+git filter-branch -f --env-filter '
+OLD_EMAIL="lraghav@gmail.com"
+CORRECT_NAME="L-Raghav"
+CORRECT_EMAIL="lraghav0509@gmail.com"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+'''
+
+-Even after this the green squares didn't appear in my GitHub profile so the next place I checked was the commit history of the repo @ "https://github.com/L-Raghav/echolex-poc/commits/main" where I checked whether the user name and icon are correct and there was no problems there
+
+-Next step was to check if my email was verified in GitHub and there was no problem there as well
+
+-After waiting for the caching of GitHub server for more than 12 hours I decided to take matters into my own hands and ran this command to force update.
+And this is the result of that decision. The idea was to push a brand new commit in the updated correct email, this will ping the GitHub servers to process the new commit and reconfigure the entire graph.
+
+-Even after all this the contribution graph is still not updated and waiting on the GitHub servers hoping they are just taking their sweet time in fixing this issue
